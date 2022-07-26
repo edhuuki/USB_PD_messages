@@ -8,7 +8,10 @@
 # Directed graph detailing flow of messages
 # Keys are messages, values are lists of potential next messages
 
+import array
+import struct
 from PD_messages_binary_mapping import *
+from collections import namedtuple
 
 EPR_entry_directed_graph = {
     'start':['EPR_mode_enter'],
@@ -61,13 +64,16 @@ class epr_message_decode:
             transition_times = self.__parse_digital(kwargs['saleae_bin_file']) 
         
 
-        if message and message[:64]!= preamble:
+        if  not message and message[:64]!= preamble:
             raise Exception('Message does not start with preamble.')
 
+        self.sop_kcodes,self.SOP = self.parse_sop(message[64:84])
 
-        
-        elif message:
-            self.sop_kcodes,self.SOP = self.parse_sop(message[64:84])
+        if len(message)>85:
+            self.header = self.parse_header(message[84:104],self.SOP)
+        else:
+            self.header= None
+    
     # parses start of packets on the PD line
     # Section 5.4 details what is and isn't a valid ordered set.
     def parse_sop(self,sop):
@@ -79,9 +85,8 @@ class epr_message_decode:
             - Maps the kCodes via the PD_messages_binary_mapping k_codes5b dict
             - returns the list of decoded Kcodes and which SOP
         '''
-        kcode_bin = [sop[i:i+5] for i in range(0,20,5)]       # 5bit grouping
-        kcode_bin = [k_code[::-1] for k_code in kcode_bin]    # reverses each kcode
-        kcode_messages = [k_codes5b[five_bit] for five_bit in kcode_bin]    # Maps the kcodes to their message
+        kcode_bin = [sop[i:i+5] for i in range(0,20,5)]                     # 5bit grouping
+        kcode_messages = [fiveBit_fourBit_decoder[five_bit] for five_bit in kcode_bin]    # Maps the kcodes to their message
         message_key = ''.join(kcode_messages)                 # Comverts the ordered set to a key
         
         ## Uncommment the line below for debug
@@ -94,35 +99,23 @@ class epr_message_decode:
     def parse_header(self,raw_bin_header,sop):
 
         # need to decode 20 bit 5b signal to 4b
-        # raw_bin_header = raw_bin_header[::-1]
+
         raw_bin_header = [raw_bin_header[i:i+5] for i in range(0,20,5)]
-        # raw_bin_header = [val[::-1] for val in raw_bin_header]
-
-        raw_bin_header = ''.join([fiveBit_4Bit_decoder[fiveB_group] for fiveB_group in raw_bin_header])
-
-        # raw_bin_header = raw_bin_header[::-1]
-        # Most significant bit is index 15 here, denoted as 15 in spec sheet
-        # Message communicated backwords
-        # Extended = 0: indicates a control or data message
-        #               if(no_Dos>0): no_Dos indicates the amount of 32 bit data objects that follow the Message_header
-        #               else: control message
-        # Extended = 1: indicates an extended message
-        #               no_Dos indicates the amount of 32 bit data objects that follow the Message_header
-        
+        raw_bin_header = ''.join([fiveBit_fourBit_decoder[fiveB_group] for fiveB_group in raw_bin_header])
         header_format = {
             'Extended':raw_bin_header[15], 
             'no_DOs':raw_bin_header[14:11:-1],
             'MessageID':raw_bin_header[11:8:-1],
             'Spec_Revision':raw_bin_header[7:5:-1],
-            'Message_Type':raw_bin_header[5:0:-1],
+            'Message_Type':raw_bin_header[4::-1],
             }
 
         if sop=='SOP':
-            header_format['Port_Power_Role'] = raw_bin_header[8]
-            header_format['Port_Power_Role'] = raw_bin_header[5]
+            header_format['Port_Power_Role'] = raw_bin_header[7]
+            header_format['Port_Power_Role'] = raw_bin_header[10]
         else:
-            header_format['Cable_plug'] = raw_bin_header[8]
-            header_format['Reserved'] = raw_bin_header[5]
+            header_format['Cable_plug'] = raw_bin_header[7]
+            header_format['Reserved'] = raw_bin_header[10]
 
         return header_format
 
@@ -130,7 +123,8 @@ class epr_message_decode:
 
 
     def __str__(self):
-        return '\t'.join(['Preamble', self.SOP])
+        header = self.header if self.header else ''
+        return '\t'.join(['Preamble', self.SOP,str(header)])
 
 
 # Decode biphase mark code wave_forms
@@ -222,22 +216,3 @@ class decode_BMC:
         data = list(filter(lambda x:x!='', data))
         return list(data)
 
-    def saleae_bin(f):
-    # Parse header
-        identifier = f.read(8)
-        if identifier != b"<SALEAE>":
-            raise Exception("Not a saleae file")
-
-        version, datatype = struct.unpack('=ii', f.read(8))
-
-        if version != expected_version or datatype != TYPE_DIGITAL:
-            raise Exception("Unexpected data type: {}".format(datatype))
-
-        # Parse digital-specific data
-        initial_state, begin_time, end_time, num_transitions = struct.unpack('=iddq', f.read(28))
-
-        # Parse transition times
-        transition_times = array.array('d')
-        transition_times.fromfile(f, num_transitions)
-
-        return DigitalData(initial_state, begin_time, end_time, num_transitions, transition_times)
