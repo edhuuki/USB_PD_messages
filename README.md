@@ -1,5 +1,7 @@
 # USB PD messages
 
+Currently decodes the headers of the PD messages for the purposes of debugging. Includes decoding headers for EPR messages. 
+
 Decode PD messages, USB Power Delivery Specification Revision 3.1 Version 1.5
 
 - https://www.usb.org/document-library/usb-power-delivery
