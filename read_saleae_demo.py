@@ -3,6 +3,7 @@ import array
 import struct
 import sys
 from collections import namedtuple
+from PD_messages_binary_mapping import *
 
 
 def parse_digital(f):
@@ -30,9 +31,8 @@ def parse_digital(f):
     transition_times.fromfile(f, num_transitions)
 
     return transition_times
-    return DigitalData(initial_state, begin_time, end_time, num_transitions, transition_times)
 
-filename = 'digital_6.bin'
+filename = 'digital_0.bin'
 
 with open(filename, 'rb') as f:
     data = parse_digital(f)
@@ -40,16 +40,26 @@ with open(filename, 'rb') as f:
 
 sample = decode_BMC.saleae_data_2_binary_messages(data)
 
+# for i,message in enumerate(sample):
+#     print(len(message))
+#     try:
+#         temp = epr_message_decode(message)
+#         print(i,temp,'\n')
+#     except:
+#         print('error\n')
 
-with open('test.txt','w') as file:
-
-    for message in sample:
-        # print(message)
-        temp = epr_message_decode(message)
-        print(temp,'\n')
-
-
-        file.write(message+'\n\n')
+i = 0
+messages = sample
+for message in messages:
+    test = epr_message_decode(message)
+    print(test.SOP)
+    if test.header:
+        print(message[84:104])
+        try:
+            print(control_messages[test.header['Message_Type'][::-1]])
+        except:
+            print('\nERROR\n')
+    print('\n')
 
         
 
