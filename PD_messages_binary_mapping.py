@@ -139,33 +139,26 @@ control_messages = {
 
 data_messages = {
 	'00000':'Reserved',
-	'00001':'Source_Capabilities',
-	'00010':'Request',
-	'00011':'BIST',						# Built in self test
+	'10000':'Source_Capabilities',
+	'01000':'Request',
+	'11000':'BIST',						# Built in self test
 	'00100':'Sink_Capabilities',
-	'00101':'Battery_Status',
-	'00110':'Alert',
-	'00111':'Get_Country_Info',
-	'01000':'Enter_USB',
-	'01001':'EPR_Request',
+	'10100':'Battery_Status',
+	'01100':'Alert',
+	'11100':'Get_Country_Info',
+	'00010':'Enter_USB',
+	'10010':'EPR_Request',
 	'01010':'EPR_Mode',
-	'01011':'Source_Info',
-	'01100':'Revision',
-	'01101':'Reserved',
-	'01110':'Reserved',
-	'01111':'Vendor_Defined',
-	'10000':'Reserved',
-	'10001':'Reserved',
-	'10010':'Reserved',
-	'10011':'Reserved',
-	'10100':'Reserved',
-	'10101':'Reserved',
+	'11010':'Source_Info',
+	'00110':'Revision',
 	'10110':'Reserved',
-	'10111':'Reserved',
-	'11000':'Reserved'
+	'01110':'Reserved',
+	'11110':'Vendor_Defined'
 }
-for i in range(16,32):
-	data_messages[bin(i)[2:]] = 'Reserved'
+# for i in range(16,32):
+# 	data_messages[bin(i)[-1:1:-1]] = 'Reserved'
+
+# print(data_messages)
 
 
 
@@ -181,13 +174,18 @@ message_header_bit_format={
 	'SOP\'\'':['Extended', 'no_DOs', 'MessageID', 'Cable_Plug','Spec_Revision','Reserved','Message_Type']
 }
 
-'''
-bit 15		: 	Extended 	(bool if the header is 32 or 16 bits for True/False)
-bit 14:12	: 	no_DOs 		(number of 32 bit data objects)
-bit 11:9	: 	MessageID 	(Message ID)
-bit 8		: 	Port_Power_Role ()
-bit 8		: 	Cable_Plug 	()
-bit 7:6		:	Spec_revision
-bit 4:0		: 	Message_type
 
-'''
+
+# EPR mode data objects
+# pg. 200
+# table 6-50
+
+epr_action = {
+	bin(0)[-1:1:-1]: 'Reserved',
+	bin(1)[-1:1:-1]: 'Enter',
+	bin(2)[-1:1:-1]: 'Enter Acknowledge',
+	bin(3)[-1:1:-1]: 'Enter Succ',
+	bin(4)[-1:1:-1]: 'Reserved',
+	bin(5)[-1:1:-1]: 'Reserved',
+	bin(6)[-1:1:-1]: 'Reserved'
+}
