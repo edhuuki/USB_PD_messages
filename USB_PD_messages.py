@@ -35,24 +35,6 @@ EPR_entry_directed_graph = {
     'error_SSR':[]
     }
 
-class epr_message_encode:
-
-
-    def __init__(self,**kwargs):
-        if 'source' in kwargs:
-            self.source = kwargs['source']
-        
-        pass
-    
-    def control(self,extended, no_of_DOs, id, port_pwr_role, spec_rev, port_data_role, message_type):
-
-        pass
-
-    def data(self):
-        pass
-
-    def extended(self):
-        pass
 
 class decode_CC_data_file:
     def __init__(self,**kwargs)-> None:
