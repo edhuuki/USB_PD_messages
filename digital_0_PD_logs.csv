@@ -1,0 +1,36 @@
+SOP,Header,
+HRST,
+SOP',Header: {'Extended': '0', 'no_DOs': '100', 'MessageID': '000', 'Spec_Revision': '01', 'Message_Type': 'Vendor_Defined', 'Cable_plug': '0', 'Reserved': '0'}
+SOP',Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '000', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Cable_plug': '1', 'Reserved': '0'}
+SOP',Header: {'Extended': '0', 'no_DOs': '101', 'MessageID': '000', 'Spec_Revision': '10', 'Message_Type': 'Vendor_Defined', 'Cable_plug': '1', 'Reserved': '0'}
+SOP',Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '000', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Cable_plug': '0', 'Reserved': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '001', 'MessageID': '000', 'Spec_Revision': '01', 'Message_Type': 'Source_Capabilities', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '001', 'MessageID': '000', 'Spec_Revision': '01', 'Message_Type': 'Source_Capabilities', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '001', 'MessageID': '000', 'Spec_Revision': '01', 'Message_Type': 'Source_Capabilities', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '001', 'MessageID': '100', 'Spec_Revision': '01', 'Message_Type': 'Source_Capabilities', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '001', 'MessageID': '100', 'Spec_Revision': '01', 'Message_Type': 'Source_Capabilities', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '001', 'MessageID': '100', 'Spec_Revision': '01', 'Message_Type': 'Source_Capabilities', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '001', 'MessageID': '010', 'Spec_Revision': '01', 'Message_Type': 'Source_Capabilities', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '010', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Port_Power_Role': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '100', 'MessageID': '000', 'Spec_Revision': '01', 'Message_Type': 'Request', 'Port_Power_Role': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '000', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '110', 'Spec_Revision': '01', 'Message_Type': 'Accept', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '110', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Port_Power_Role': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '001', 'Spec_Revision': '01', 'Message_Type': 'PS_RDY', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '001', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Port_Power_Role': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '100', 'MessageID': '101', 'Spec_Revision': '01', 'Message_Type': 'Vendor_Defined', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '101', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Port_Power_Role': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '001', 'MessageID': '100', 'Spec_Revision': '01', 'Message_Type': 'Vendor_Defined', 'Port_Power_Role': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '100', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Port_Power_Role': '1'}
+SOP',Header: {'Extended': '0', 'no_DOs': '100', 'MessageID': '100', 'Spec_Revision': '10', 'Message_Type': 'Vendor_Defined', 'Cable_plug': '0', 'Reserved': '0'}
+SOP',Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '100', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Cable_plug': '1', 'Reserved': '0'}
+SOP',Header: {'Extended': '0', 'no_DOs': '010', 'MessageID': '100', 'Spec_Revision': '10', 'Message_Type': 'Vendor_Defined', 'Cable_plug': '1', 'Reserved': '0'}
+SOP',Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '100', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Cable_plug': '0', 'Reserved': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '100', 'MessageID': '011', 'Spec_Revision': '01', 'Message_Type': 'Vendor_Defined', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '011', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Port_Power_Role': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '010', 'MessageID': '010', 'Spec_Revision': '01', 'Message_Type': 'Vendor_Defined', 'Port_Power_Role': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '010', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '100', 'MessageID': '111', 'Spec_Revision': '01', 'Message_Type': 'Vendor_Defined', 'Port_Power_Role': '1'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '111', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Port_Power_Role': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '010', 'MessageID': '110', 'Spec_Revision': '01', 'Message_Type': 'Vendor_Defined', 'Port_Power_Role': '0'}
+SOP,Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '110', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Port_Power_Role': '1'}
