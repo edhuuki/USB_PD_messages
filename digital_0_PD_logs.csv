@@ -1,5 +1,5 @@
-SOP,Header,,,,,,,
-HRST,,,,,,,,
+SOP,Header,,,,,,
+HRST,,,,,,,
 SOP',Header: {'Extended': '0', 'no_DOs': '100', 'MessageID': '000', 'Spec_Revision': '01', 'Message_Type': 'Vendor_Defined', 'Cable_plug': '0', 'Reserved': '0'}
 SOP',Header: {'Extended': '0', 'no_DOs': '000', 'MessageID': '000', 'Spec_Revision': '10', 'Message_Type': 'GoodCRC', 'Cable_plug': '1', 'Reserved': '0'}
 SOP',Header: {'Extended': '0', 'no_DOs': '101', 'MessageID': '000', 'Spec_Revision': '10', 'Message_Type': 'Vendor_Defined', 'Cable_plug': '1', 'Reserved': '0'}
